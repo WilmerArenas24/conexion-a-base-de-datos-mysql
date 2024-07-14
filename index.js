@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
 connection.connect();
 
 //Agregar un nuevo registro
-connection.query('INSERT INTO cliente VALUES (1,"WILMER",5555222555,"CR 13H 29 09 SUR")',function(error,resultado){
+connection.query('INSERT INTO cliente VALUES (1,"WILMER",1,5555222555,"CR 13H 29 09 SUR")',function(error,resultado){
     if(error) throw error;
     console.log(resultado)
 })
@@ -29,7 +29,19 @@ connection.query('INSERT INTO cliente VALUES (1,"WILMER",5555222555,"CR 13H 29 0
 connection.query('SELECT * FROM cliente',function(error,filas){
     if(error) throw error;
     console.log(filas);
+});
+
+//Realizar modificacion a registro
+connection.query('UPDATE cliente SET genero = 0, telefono = 11122211 WHERE idCliente=1',function(error,resultado){
+    if(error) throw error;
+    console.log(resultado)
 })
+
+//Consulta a la tabla despues de modificar
+connection.query('SELECT * FROM cliente',function(error,filas){
+    if(error) throw error;
+    console.log(filas);
+});
 
 
 
