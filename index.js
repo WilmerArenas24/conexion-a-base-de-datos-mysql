@@ -13,17 +13,22 @@ var connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'rootroot',
-    database:'mibasenueva'
+    database:'basenueva'
 });
 
 //Nos conectamos con la base
 connection.connect();
 
+
+
 //Agregar un nuevo registro
-connection.query('INSERT INTO cliente VALUES (1,"WILMER",1,5555222555,"CR 13H 29 09 SUR")',function(error,resultado){
+connection.query('INSERT INTO cliente (idCliente, nombre, genero, telefono, domiciolio) VALUES (1, "Wil", 1, 223322, "Direccion")',
+                 function(error,resultado){
     if(error) throw error;
     console.log(resultado)
 })
+
+
 
 //Consulta a la tabla
 connection.query('SELECT * FROM cliente',function(error,filas){
@@ -31,11 +36,13 @@ connection.query('SELECT * FROM cliente',function(error,filas){
     console.log(filas);
 });
 
+
 //Realizar modificacion a registro
 connection.query('UPDATE cliente SET genero = 0, telefono = 11122211 WHERE idCliente=1',function(error,resultado){
     if(error) throw error;
     console.log(resultado)
 })
+
 
 //Consulta a la tabla despues de modificar
 connection.query('SELECT * FROM cliente',function(error,filas){
@@ -43,8 +50,20 @@ connection.query('SELECT * FROM cliente',function(error,filas){
     console.log(filas);
 });
 
+/*
+//Eliminar un registro
+connection.query('DELETE FROM cliente WHERE idCliente = 1',function(error,resultado){
+    if(error) throw error;
+    console.log(resultado)
+});
 
 
+//Consulta a la tabla despues de eliminar
+connection.query('SELECT * FROM cliente',function(error,filas){
+    if(error) throw error;
+    console.log(filas);
+});
+*/
 
 
 //Cerramos la conexion 
